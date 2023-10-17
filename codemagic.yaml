@@ -1,7 +1,6 @@
 workflows:
   pardon-et-merci-ios:
     name: Build Pardon & Merci iOS App
-    instance_type: mac_mini
     max_build_duration: 60
     environment:
       vars:
