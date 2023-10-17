@@ -1,5 +1,5 @@
 # Résoudre le fichier react_native_pods.rb
-require_relative '../../node_modules/react-native/scripts/react_native_pods'
+require_relative '../../../../node_modules/react-native/scripts/react_native_pods'
 
 
 platform :ios, min_ios_version_supported
