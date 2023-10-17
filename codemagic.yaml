@@ -4,8 +4,8 @@ workflows:
     max_build_duration: 60
     environment:
       vars:
-        XCODE_WORKSPACE: "PardonEtMerci.xcworkspace"
-        XCODE_SCHEME: "PardonEtMerci"
+        XCODE_WORKSPACE: "Pardonetmercimobilev3.xcworkspace"  # Mettre à jour avec le nom correct du workspace
+        XCODE_SCHEME: "Pardonetmercimobilev3"  # Mettre à jour avec le nom correct du schéma
     scripts:
       - name: Install dependencies
         script: |
