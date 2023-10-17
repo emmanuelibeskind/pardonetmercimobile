@@ -1,21 +1,36 @@
 workflows:
   pardon-et-merci-ios:
     name: Build Pardon & Merci iOS App
+    instance_type: mac_mini
     max_build_duration: 60
     environment:
       vars:
-        XCODE_WORKSPACE: "ios/Pardonetmercimobilev3.xcworkspace"
-        XCODE_SCHEME: "Pardonetmercimobilev3"
+        XCODE_WORKSPACE: "Pardonetmercimobilev3.xcworkspace"  
+        XCODE_SCHEME: "Pardonetmercimobilev3"  
+      xcode: latest
+    cache:
+      cache_paths:
+        - ~/Library/Caches/CocoaPods
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: '*'
+          include: true
+          source: true
     scripts:
-      - name: Install CocoaPods dependencies
+      - name: Install dependencies
         script: |
-          cd ios && pod install
-      - name: Print Xcode version
-        script: |
-          xcodebuild -version
+          # Installez des dépendances spécifiques ici si nécessaire
+          npm install
+          cd ios && pod install && cd ..
       - name: Build iOS app
         script: |
           xcodebuild build -workspace "$XCODE_WORKSPACE" -scheme "$XCODE_SCHEME" -configuration Debug -sdk iphoneos -derivedDataPath build
     artifacts:
       - build/**/Build/Products/**/*.app
       - build/**/Build/Products/**/*.dSYM
+    publishing:
+      email:
+        recipients:
+          - e.baudrier94@gmail.com
