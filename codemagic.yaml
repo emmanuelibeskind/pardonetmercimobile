@@ -1,0 +1,18 @@
+workflows:
+  pardon-et-merci-ios:
+    name: Build Pardon & Merci iOS App
+    max_build_duration: 60
+    environment:
+      vars:
+        XCODE_WORKSPACE: "PardonEtMerci.xcworkspace"
+        XCODE_SCHEME: "PardonEtMerci"
+    scripts:
+      - name: Install dependencies
+        script: |
+          # Installez des dépendances spécifiques ici si nécessaire
+      - name: Build iOS app
+        script: |
+          xcodebuild build -workspace "$XCODE_WORKSPACE" -scheme "$XCODE_SCHEME" -configuration Debug -sdk iphoneos -derivedDataPath build
+    artifacts:
+      - build/**/Build/Products/**/*.app
+      - build/**/Build/Products/**/*.dSYM
