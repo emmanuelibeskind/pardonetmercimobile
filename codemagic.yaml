@@ -4,12 +4,15 @@ workflows:
     max_build_duration: 60
     environment:
       vars:
-        XCODE_WORKSPACE: "Pardonetmercimobilev3.xcworkspace"  # Mettre à jour avec le nom correct du workspace
-        XCODE_SCHEME: "Pardonetmercimobilev3"  # Mettre à jour avec le nom correct du schéma
+        XCODE_WORKSPACE: "ios/Pardonetmercimobilev3.xcworkspace"
+        XCODE_SCHEME: "Pardonetmercimobilev3"
     scripts:
-      - name: Install dependencies
+      - name: Install CocoaPods dependencies
         script: |
-          # Installez des dépendances spécifiques ici si nécessaire
+          cd ios && pod install
+      - name: Print Xcode version
+        script: |
+          xcodebuild -version
       - name: Build iOS app
         script: |
           xcodebuild build -workspace "$XCODE_WORKSPACE" -scheme "$XCODE_SCHEME" -configuration Debug -sdk iphoneos -derivedDataPath build
